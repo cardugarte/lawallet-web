@@ -16,7 +16,7 @@ interface ProviderProps {
 }
 
 // Metadata
-const APP_DESCRIPTION = 'https://lawallet.ar/';
+const APP_DESCRIPTION = 'https://xplorers.ar/';
 
 export async function generateMetadata({ params: { lng } }) {
   const t = await getTranslations({ locale: lng, namespace: 'metadata' });

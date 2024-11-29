@@ -80,7 +80,7 @@ const SignUp = () => {
     setSignUpData({
       loading: false,
       enabled: Boolean(enabled),
-      price: milisatoshis / 1000 ?? 0,
+      price: milisatoshis / 1000,
     });
 
     if (!enabled) router.push('/');
