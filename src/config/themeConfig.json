@@ -1,9 +1,9 @@
 {
   "colors": {
     "black": "#1C1C1C",
-    "white": "#fefefe",
+    "white": "#f1f1f1",
     "primary": "#0ea5ea",
-    "secondary": "#1eb1b1",
+    "secondary": "#0bd1d1",
     "gray5": "#0D0D0D",
     "gray10": "#1A1A1A",
     "gray15": "#262626",
@@ -17,11 +17,11 @@
     "success": "#56B68C",
     "warning": "#F9B550",
     "error": "#E95053",
-    "background": "linear-gradient(to right, #131C31, #222F43)",
-    "text": "#fefefe"
+    "background": "#1C1C1C",
+    "text": "#f1f1f1"
   },
   "borders": {
-    "buttonRadius": "10px"
+    "buttonRadius": "50px"
   },
   "font": {
     "primary": "var(--font-primary)",
