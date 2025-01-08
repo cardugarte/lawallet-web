@@ -29,15 +29,14 @@ import { About } from './components/about';
 
 export function Profile(props: { pubkey: string }) {
   const { pubkey } = props;
-
   const [showPendingBadges, setShowPendingBadges] = useState(false);
   const paramPubkey = useMemo(() => pubkey as string, [pubkey]);
-
   const identity = useIdentity();
-  const profile = paramPubkey === identity.pubkey ? useProfile() : useProfile({ pubkey: paramPubkey });
+  const profile = paramPubkey !== identity.pubkey ? useProfile() : useProfile({ pubkey: paramPubkey });
+  // console.log(identity);
 
   const { userBadges, acceptBadge, revokeBadge } =
-    paramPubkey === identity.pubkey ? useBadges() : useBadges({ pubkey: paramPubkey });
+    paramPubkey !== identity.pubkey ? useBadges() : useBadges({ pubkey: paramPubkey });
 
   const NoBadgesMessage = ({ isPending }: { isPending: boolean }) => (
     <div className="text-center py-8">
@@ -49,6 +48,7 @@ export function Profile(props: { pubkey: string }) {
       </p>
     </div>
   );
+  console.log(profile);
 
   return (
     <>
@@ -67,7 +67,7 @@ export function Profile(props: { pubkey: string }) {
               <div
                 className={cn(`relative overflow-hidden flex-none bg-background rounded-full`, 'w-16 h-16 max-h-16')}
               >
-                {!profile?.nip05Avatar ? (
+                {!profile?.nip05Avatar || !profile?.domainAvatar ? (
                   <Skeleton className={`w-full h-full bg-border`} />
                 ) : (
                   <Image
@@ -75,7 +75,7 @@ export function Profile(props: { pubkey: string }) {
                     priority
                     quality={70}
                     className="object-cover"
-                    src={profile?.nip05Avatar}
+                    src={profile?.nip05Avatar || profile?.domainAvatar}
                     alt={
                       profile?.nip05?.name || profile?.nip05?.displayName || String(profile?.nip05?.display_name) || ''
                     }
@@ -154,7 +154,13 @@ export function Profile(props: { pubkey: string }) {
                     >
                       <div className="relative w-full max-w-full transition-transform group-hover:scale-105 aspect-square">
                         {badge?.image ? (
-                          <Image className="object-cover object-center" src={badge?.image} alt={badge?.name} fill />
+                          <Image
+                            className="object-cover object-center"
+                            priority
+                            src={badge?.image}
+                            alt={badge?.name}
+                            fill
+                          />
                         ) : (
                           <Skeleton className={`w-full min-h-[130px] h-full bg-border`} />
                         )}

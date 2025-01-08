@@ -11,6 +11,7 @@ export const regexURL = /^(http|https):\/\/[^ "]+$/;
 
 export const lightningAddresses = [
   'lawallet.ar',
+  'xplorers.ar',
   'hodl.ar',
   'walletofsatoshi.com',
   'getalby.com',

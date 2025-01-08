@@ -7,6 +7,7 @@ import { useIdentity } from '@lawallet/react';
 
 export default function Page() {
   const identity = useIdentity();
+  // console.log(identity);
 
   return (
     <>
